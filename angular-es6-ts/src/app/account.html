@@ -1,0 +1,35 @@
+<h1>{{title}}</h1>
+	<h2>Selected Account: {{selectedAccount.AccountName}}</h2>
+	<p>Employees:</p>
+	<input (ngModel)="query" placeholder="Enter search term here">
+	<table width="60%" style="border:dotted #eee;">
+		
+		<thead>
+			<th>Accounts</th>
+			<th>Properties</th>
+		</thead>
+
+		<tr>
+			<td width="50%" style="vertical-align:top;border-top:dotted #eee;border-right:dotted #eee;">
+				<ul>
+					<li (click)="showSelected(account)" *ngFor="let account of accounts">
+						<a href="javascript:void(0)" style="text-decoration:none;">{{account.AccountName}}</a>
+					</li>
+				</ul>
+				
+			</td>
+			<td style="border-top:dotted #eee;">
+					<table width="100%">
+						<thead>
+							<th width="30%" align="left">ID</th>
+							<th align="left">Name</th>
+						</thead>
+						<tr *ngFor="let property of selectedAccount.Properties; let p = index">
+							<td align="left">{{property.Id}}</td>
+							<td align="left">{{property.Name}}</td>
+						</tr>
+					</table>
+			</td>
+		</tr>
+	</table>
+<p *ngIf="accounts.length > 1">Click on account name to view properties.</p>
